@@ -61,6 +61,7 @@ body {
   border: none;
   background: #f2ede6;
   font-size: 15px;
+  color: #000000;
   outline: none;
   transition: 0.2s ease;
 }
