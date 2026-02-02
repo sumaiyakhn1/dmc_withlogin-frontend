@@ -1,0 +1,110 @@
+/* Reset */
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #d9c7a7, #c8ab7d);
+}
+
+/* Center container */
+.login-container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card */
+.login-card {
+  width: 420px;
+  max-width: 90%;
+  background: #e9e1d6;
+  padding: 50px 45px;
+  border-radius: 20px;
+  box-shadow: 0 25px 40px rgba(0, 0, 0, 0.15);
+  text-align: left;
+  color: #000000;
+}
+
+/* Heading */
+.login-card h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 8px;
+  color: #000000;
+  font-weight: 700;
+}
+
+/* Subtitle */
+.login-card .subtitle {
+  text-align: center;
+  font-size: 15px;
+  color: #000000;
+  margin-bottom: 35px;
+}
+
+/* Labels */
+.login-card label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000000;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Inputs */
+.login-card input {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 25px;
+  border-radius: 14px;
+  border: none;
+  background: #f2ede6;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.login-card input:focus {
+  box-shadow: 0 0 0 2px #b89a77;
+}
+
+/* Button */
+.login-card button {
+  width: 100%;
+  padding: 16px;
+  border-radius: 18px;
+  border: none;
+  background: #b89a77;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.login-card button:hover {
+  background: #a7845f;
+}
+
+.login-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Error message */
+.error {
+  margin-top: 10px;
+  color: #b0413e;
+  font-weight: 500;
+}
+
+/* Success card */
+.success-card {
+  text-align: center;
+  color: #000000;
+}
+
+.success-card p {
+  color: #000000;
+}
