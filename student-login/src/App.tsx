@@ -1,22 +1,23 @@
 import { useState } from "react";
 import "./App.css";
 
-interface Student {
-  "Name as per 10th Document": string;
-  "Roll Number": number;
+interface LoginResponse {
+  name: string;
+  regNo: string;
+  sessionList: string[];
 }
 
 function App() {
-  const [rollNumber, setRollNumber] = useState<string>("");
-  const [birthday, setBirthday] = useState<string>("");
-  const [student, setStudent] = useState<Student | null>(null);
-  const [error, setError] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const [rollNumber, setRollNumber] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [data, setData] = useState<LoginResponse | null>(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // Convert YYYY-MM-DD → 01-Mar-2005
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date
+  // YYYY-MM-DD → 01-Mar-2005
+  const formatDate = (date: string) => {
+    const d = new Date(date);
+    return d
       .toLocaleDateString("en-GB", {
         day: "2-digit",
         month: "short",
@@ -29,34 +30,30 @@ function App() {
     e.preventDefault();
     setLoading(true);
     setError("");
-    setStudent(null);
+    setData(null);
 
     try {
-      const formattedBirthday = formatDate(birthday);
-
       const response = await fetch(
         "https://dmc-withlogin-backend.onrender.com/login",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             login_id: rollNumber,
-            password: formattedBirthday,
+            password: formatDate(birthday),
           }),
         }
       );
 
-      const data = await response.json();
+      const res = await response.json();
 
       if (!response.ok) {
-        setError(data.detail || "Invalid Roll Number or Date of Birth");
+        setError(res.detail || "Login failed");
       } else {
-        setStudent(data.student);
+        setData(res);
       }
-    } catch (err) {
-      setError("Server error. Please try again.");
+    } catch {
+      setError("Server error");
     } finally {
       setLoading(false);
     }
@@ -64,15 +61,12 @@ function App() {
 
   return (
     <div className="login-container">
-      {!student ? (
+      {!data ? (
         <form onSubmit={handleLogin} className="login-card">
           <h2>Student Login</h2>
-          <p className="subtitle">Access your student portal</p>
 
           <label>Roll Number</label>
           <input
-            type="text"
-            placeholder="Enter roll number"
             value={rollNumber}
             onChange={(e) => setRollNumber(e.target.value)}
             required
@@ -95,15 +89,18 @@ function App() {
       ) : (
         <div className="login-card success-card">
           <h2>Login Successful 🎉</h2>
-          <p>
-            Welcome{" "}
-            <strong>{student["Name as per 10th Document"]}</strong>
-          </p>
-          <p>Roll Number: {student["Roll Number"]}</p>
 
-          <button onClick={() => setStudent(null)}>
-            Logout
-          </button>
+          <p><strong>Name:</strong> {data.name}</p>
+          <p><strong>Roll No:</strong> {data.regNo}</p>
+
+          <p><strong>Session List:</strong></p>
+          <ul>
+            {data.sessionList.map((s) => (
+              <li key={s}>{s}</li>
+            ))}
+          </ul>
+
+          <button onClick={() => setData(null)}>Logout</button>
         </div>
       )}
     </div>
