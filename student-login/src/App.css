@@ -1,11 +1,16 @@
-/* Reset */
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
   background: linear-gradient(135deg, #d9c7a7, #c8ab7d);
+  color: #000;
 }
 
-/* Center container */
+/* ================= LAYOUT ================= */
 .login-container {
   min-height: 100vh;
   width: 100vw;
@@ -14,7 +19,7 @@ body {
   align-items: center;
 }
 
-/* Card */
+/* ================= CARD ================= */
 .login-card {
   width: 420px;
   max-width: 90%;
@@ -22,38 +27,46 @@ body {
   padding: 50px 45px;
   border-radius: 20px;
   box-shadow: 0 25px 40px rgba(0, 0, 0, 0.15);
-  text-align: left;
-  color: #000000;
+  color: #000;
 }
 
-/* Heading */
+/* ================= HEADINGS ================= */
 .login-card h2 {
   text-align: center;
   font-size: 32px;
   margin-bottom: 8px;
-  color: #000000;
   font-weight: 700;
 }
 
-/* Subtitle */
-.login-card .subtitle {
+.login-card h3 {
+  text-align: center;
+  margin: 25px 0 15px;
+  font-size: 22px;
+}
+
+.login-card h4 {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+/* ================= SUBTITLE ================= */
+.subtitle {
   text-align: center;
   font-size: 15px;
-  color: #000000;
   margin-bottom: 35px;
 }
 
-/* Labels */
+/* ================= LABELS ================= */
 .login-card label {
   font-size: 15px;
   font-weight: 600;
-  color: #000000;
   display: block;
   margin-bottom: 8px;
 }
 
-/* Inputs */
-.login-card input {
+/* ================= INPUTS ================= */
+.login-card input,
+.login-card select {
   width: 100%;
   padding: 14px 16px;
   margin-bottom: 25px;
@@ -61,27 +74,28 @@ body {
   border: none;
   background: #f2ede6;
   font-size: 15px;
-  color: #000000;
   outline: none;
   transition: 0.2s ease;
 }
 
-.login-card input:focus {
+.login-card input:focus,
+.login-card select:focus {
   box-shadow: 0 0 0 2px #b89a77;
 }
 
-/* Button */
+/* ================= BUTTON ================= */
 .login-card button {
   width: 100%;
   padding: 16px;
   border-radius: 18px;
   border: none;
   background: #b89a77;
-  color: white;
+  color: #fff;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: 0.25s ease;
+  margin-top: 10px;
 }
 
 .login-card button:hover {
@@ -93,19 +107,122 @@ body {
   cursor: not-allowed;
 }
 
-/* Error message */
+/* ================= ERROR ================= */
 .error {
-  margin-top: 10px;
+  margin-top: 12px;
   color: #b0413e;
-  font-weight: 500;
-}
-
-/* Success card */
-.success-card {
+  font-weight: 600;
   text-align: center;
-  color: #000000;
 }
 
-.success-card p {
-  color: #000000;
+/* ================= SUCCESS ================= */
+.success-card {
+  width: 1000px;
+  max-width: 95%;
+  transition: width 0.3s ease;
+}
+
+/* ================= DETAILS CONTAINER ================= */
+.details-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+  text-align: left;
+}
+
+.details-section {
+  background: #f6f1ea;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.details-section h3 {
+  margin: 0 0 15px !important;
+  font-size: 18px !important;
+  color: #b89a77;
+  border-bottom: 2px solid #e9e1d6;
+  padding-bottom: 5px;
+}
+
+.details-section p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+/* ================= SUBJECT LIST ================= */
+.subjects-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.subjects-list li {
+  padding: 6px 10px;
+  background: #fff;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  font-size: 13px;
+  border-left: 3px solid #b89a77;
+}
+
+/* ================= FEE CARDS ================= */
+.fee-card {
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.fee-card.total {
+  background: #f2ede6;
+}
+
+.fee-card.paid {
+  background: #e7f3ef;
+  color: #2e7d32;
+}
+
+.fee-card.due {
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* ================= LOGOUT ================= */
+.logout {
+  background: #b0413e !important;
+  margin-top: 20px;
+}
+
+.logout:hover {
+  background: #983632 !important;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .success-card {
+    width: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .details-container {
+    grid-template-columns: 1fr;
+  }
+
+  .success-card {
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 35px 25px;
+  }
+
+  .login-card h2 {
+    font-size: 26px;
+  }
 }
